@@ -16,12 +16,22 @@ Trigger: "Create pSEO templates" or "Set up pSEO pages"
 **Question Flow** (ask one at a time):
 
 1. **Topic Pattern**: "What's the pSEO topic pattern? Use [placeholder] for the variable part.
-   Example: 'Bulk Invoices Creation from [platform] CSV'"
+   Examples:
+   - 'Bulk Invoices Creation from [platform] CSV'
+   - 'Best CRM for [industry]'
+   - '[service] in [city]'
+   - 'How to Use [tool] for [use-case]'
+   - '[framework] vs [competitor] Comparison'
+   - 'Free [tool-type] for [audience]'"
 
 2. **URL Structure**: "What's the URL structure?
-   Example: `/platform/[keyword-slug]` will create:
-   - Index: `/platform`
-   - Content: `/platform/stripe-csv-to-invoice`"
+   Examples:
+   - `/platform/[keyword-slug]` → `/platform/stripe-csv-to-invoice`
+   - `/industries/[keyword-slug]` → `/industries/real-estate-crm`
+   - `/locations/[keyword-slug]` → `/locations/new-york`
+   - `/tools/[keyword-slug]` → `/tools/free-invoice-generator`
+   - `/compare/[keyword-slug]` → `/compare/react-vs-vue`
+   - `/use-cases/[keyword-slug]` → `/use-cases/freelancers`"
 
 3. **Content Sections**: "What sections should each content page have? Describe each section's purpose and content.
    Example:
@@ -34,9 +44,12 @@ Trigger: "Create pSEO templates" or "Set up pSEO pages"
    - **CTA**: Final call to action"
 
 4. **Index Page Content**: "What's the index page headline and intro text?
-   Example:
-   - Headline: 'Create Invoices from Any Platform'
-   - Intro: 'Convert your CSV exports into professional invoices in seconds.'"
+   Examples:
+   - Headline: 'Create Invoices from Any Platform' / Intro: 'Convert your CSV exports into professional invoices in seconds.'
+   - Headline: 'The Best CRM for Every Industry' / Intro: 'Find the perfect CRM solution tailored to your industry needs.'
+   - Headline: 'We Service All Major Cities' / Intro: 'Professional services available in your area. Find your city below.'
+   - Headline: 'Free Tools for Everyone' / Intro: 'No signup required. Start using our free tools today.'
+   - Headline: 'Framework Comparisons' / Intro: 'Detailed side-by-side comparisons to help you choose the right tech.'"
 
 **Output**:
 - `src/content/config.ts` — Updated with pSEO collection
