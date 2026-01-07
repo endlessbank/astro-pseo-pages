@@ -86,11 +86,14 @@ Describe each section's purpose (e.g., Hero, Problem, Solution, Features, How It
 
 ### Step 2: Review & Iterate
 
-Preview your templates:
+Preview both templates:
 
 ```bash
 npm run dev
 ```
+
+- **Index page**: `http://localhost:4321/[index]`
+- **Sample content page**: `http://localhost:4321/[index]/example`
 
 Ask Claude to make changes until you're happy:
 
@@ -115,7 +118,7 @@ Stripe
 HubSpot
 ```
 
-Claude generates unique content for each keyword, updates the index, and adds a footer link.
+Claude deletes the sample page, generates unique content for each keyword, updates the index, and adds a footer link.
 
 ## Output Structure
 

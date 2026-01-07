@@ -56,6 +56,7 @@ Trigger: "Create pSEO templates" or "Set up pSEO pages"
 **Output**:
 - `src/content/config.ts` — Updated with pSEO collection
 - `src/content/pseo/` — Content collection folder
+- `src/content/pseo/example.md` — Sample content page for preview
 - `src/pages/[index]/index.astro` — Index page template
 - `src/pages/[index]/_slug_.astro` — Content page template (rename to `[...slug].astro`)
 
@@ -63,9 +64,10 @@ After generating, tell user:
 ```
 ✅ pSEO templates created!
 
-Preview:
+Preview both templates:
   npm run dev
-  Open http://localhost:4321/[index]
+  Index page: http://localhost:4321/[index]
+  Sample content page: http://localhost:4321/[index]/example
 
 Review the templates. Let me know if you want changes:
 - "Change the hero section to..."
@@ -73,6 +75,7 @@ Review the templates. Let me know if you want changes:
 - "Make the CTA more prominent"
 
 When you're happy, say "Generate pSEO pages" and paste your keywords.
+(The sample page will be replaced with your real pages)
 ```
 
 ### Mode 2: Generate pSEO Pages
@@ -90,37 +93,42 @@ HubSpot
 
 **Process**:
 
-1. **Parse Keywords** — Extract from user input
+1. **Delete Sample Page** — Remove `src/content/pseo/example.md`
 
-2. **Derive Variables** — For each keyword, create:
+2. **Parse Keywords** — Extract from user input
+
+3. **Derive Variables** — For each keyword, create:
    - `keyword`: Original (e.g., "Slack")
    - `keyword_slug`: URL-safe (e.g., "slack")
    - `full_title`: From topic pattern (e.g., "Acme Integration with Slack")
 
-3. **Generate Content** — For each keyword:
+4. **Generate Content** — For each keyword:
    - Create unique content based on template sections
    - Content should be specific to that keyword/platform
-   - Save as `src/content/pseo/[full_slug].md`
+   - Save as `src/content/pseo/[keyword_slug].md`
 
-4. **Update Footer** — Add link to pSEO index page in site footer:
-   - Open `src/config/site.config.ts`
-   - Add new link to `footer.links.product` array (e.g., `{ label: "{{INDEX_LABEL}}", href: "/{{INDEX_SLUG}}" }`)
+5. **Update Footer** — Add link to pSEO index page in site footer:
+   - Open `src/components/Footer.astro`
+   - Add new link with appropriate label (e.g., "Integrations", "Solutions")
 
-5. **Verify Index** — Index page auto-pulls from content collection
+6. **Verify Index** — Index page auto-pulls from content collection
 
 **Output**:
 ```
 ✅ Generated 5 pSEO pages!
 
+Removed:
+- src/content/pseo/example.md (sample page)
+
 Created:
-- src/content/pseo/[slug-1].md
-- src/content/pseo/[slug-2].md
-- src/content/pseo/[slug-3].md
-- src/content/pseo/[slug-4].md
-- src/content/pseo/[slug-5].md
+- src/content/pseo/slack.md
+- src/content/pseo/zapier.md
+- src/content/pseo/notion.md
+- src/content/pseo/stripe.md
+- src/content/pseo/hubspot.md
 
 Updated:
-- src/config/site.config.ts (added footer link)
+- src/components/Footer.astro (added footer link)
 
 Preview at http://localhost:4321/[index]
 ```

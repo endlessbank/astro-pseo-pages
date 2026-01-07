@@ -2,6 +2,32 @@
 
 Structure for individual pSEO content pages.
 
+## Sample Page (Mode 1)
+
+During Mode 1, create a sample content page at `src/content/pseo/example.md` so users can preview the template:
+
+```markdown
+---
+title: "Example Page Title"
+description: "This is a sample page to preview the content template. It will be replaced when you generate real pages."
+keyword: "Example"
+keywordSlug: "example"
+order: 0
+---
+
+## Sample Section
+
+This is placeholder content to demonstrate the template structure. When you run "Generate pSEO pages", this sample will be deleted and replaced with your real content pages.
+
+[Continue with all sections defined by the user, filled with realistic placeholder content...]
+```
+
+The sample page should:
+- Use realistic placeholder content that matches the user's section brief
+- Show all sections the user defined
+- Be clearly marked as a sample/example
+- Use "example" as the slug so it's obvious
+
 ## Template Structure
 
 ```astro
