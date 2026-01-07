@@ -6,9 +6,11 @@ A Claude Code skill that generates programmatic SEO (pSEO) pages for Astro sites
 
 Creates an index page + multiple content pages from a keyword list. Perfect for:
 
-- **Platform-specific pages** — "Invoice from Stripe CSV", "Invoice from PayPal CSV"
-- **Location-based pages** — "Service in New York", "Service in Los Angeles"
-- **Use-case pages** — "Tool for Freelancers", "Tool for Agencies"
+- **Integration pages** — "[SaaS] Integration with Slack", "[SaaS] Integration with Zapier"
+- **Audience pages** — "[SaaS] for Freelancers", "[SaaS] for Startups"
+- **Comparison pages** — "[SaaS] vs Competitor A", "[SaaS] vs Competitor B"
+- **Alternative pages** — "[SaaS] Alternative to Competitor"
+- **Template pages** — "Invoice Templates", "Contract Templates"
 
 ## Installation
 
@@ -47,12 +49,40 @@ Open Claude Code and say:
 
 Claude will ask 4 questions:
 
-| Question | Example |
-|----------|---------|
-| Topic pattern | "Bulk Invoices Creation from [platform] CSV" |
-| URL structure | `/platform/[keyword-slug]` |
-| Content sections | Hero, Problem, Solution, Steps, Features, FAQ, CTA |
-| Index page content | Headline + intro text |
+**1. Topic Pattern** (SaaS name comes from site.config)
+| Pattern |
+|---------|
+| "[SaaS_NAME] Integration with [platform]" |
+| "[SaaS_NAME] for [audience]" |
+| "[SaaS_NAME] vs [competitor]" |
+| "[SaaS_NAME] Alternative to [competitor]" |
+| "Free [tool-type] Generator" |
+| "[industry] Solution with [SaaS_NAME]" |
+| "[template-type] Templates" |
+
+**2. URL Structure**
+| Pattern | Example URLs |
+|---------|--------------|
+| `/integrations/[slug]` | `/integrations/slack`, `/integrations/zapier` |
+| `/solutions/[slug]` | `/solutions/freelancers`, `/solutions/startups` |
+| `/vs/[slug]` | `/vs/competitor-name` |
+| `/alternatives/[slug]` | `/alternatives/competitor-name` |
+| `/tools/[slug]` | `/tools/invoice-generator` |
+| `/templates/[slug]` | `/templates/proposal`, `/templates/contract` |
+| `/industries/[slug]` | `/industries/healthcare`, `/industries/real-estate` |
+
+**3. Content Sections**
+
+Describe each section's purpose (e.g., Hero, Problem, Solution, Features, How It Works, FAQ, CTA)
+
+**4. Index Page Content**
+| Headline | Intro |
+|----------|-------|
+| "Integrations" | "Connect [SaaS_NAME] with your favorite tools." |
+| "Solutions for Every Industry" | "See how [SaaS_NAME] works for your business." |
+| "Compare [SaaS_NAME]" | "See how we stack up against alternatives." |
+| "Free Tools" | "No signup required. Start using now." |
+| "Templates" | "Ready-to-use templates to get started fast." |
 
 ### Step 2: Review & Iterate
 
@@ -78,14 +108,14 @@ When templates are ready, say:
 Then paste your keywords:
 
 ```
+Slack
+Zapier
+Notion
 Stripe
-PayPal
-Wise
-Mercury
-QuickBooks
+HubSpot
 ```
 
-Claude generates unique content for each keyword and updates the index.
+Claude generates unique content for each keyword, updates the index, and adds a footer link.
 
 ## Output Structure
 
@@ -94,12 +124,12 @@ src/
 ├── content/
 │   ├── config.ts              # Updated with pseo collection
 │   └── pseo/
-│       ├── stripe-csv-to-invoice.md
-│       ├── paypal-csv-to-invoice.md
-│       ├── wise-csv-to-invoice.md
+│       ├── slack.md
+│       ├── zapier.md
+│       ├── notion.md
 │       └── ...
 └── pages/
-    └── platform/
+    └── integrations/
         ├── index.astro        # Index page (auto-lists all content)
         └── [...slug].astro    # Content page template
 ```
@@ -107,15 +137,17 @@ src/
 ## Example
 
 **Input:**
-- Topic: "Bulk Invoices Creation from [platform] CSV"
-- URL: `/platform/[keyword-slug]`
-- Keywords: Stripe, PayPal, Wise
+- Topic: "[SaaS_NAME] Integration with [platform]"
+- URL: `/integrations/[slug]`
+- Keywords: Slack, Zapier, Notion, Stripe
 
 **Output:**
-- `/platform` — Index page listing all platforms
-- `/platform/stripe-csv-to-invoice` — Stripe-specific content
-- `/platform/paypal-csv-to-invoice` — PayPal-specific content
-- `/platform/wise-csv-to-invoice` — Wise-specific content
+- `/integrations` — Index page listing all integrations
+- `/integrations/slack` — Slack integration content
+- `/integrations/zapier` — Zapier integration content
+- `/integrations/notion` — Notion integration content
+- `/integrations/stripe` — Stripe integration content
+- Footer updated with link to `/integrations`
 
 ## Requirements
 
@@ -126,7 +158,7 @@ src/
 
 Claude generates **unique content** for each keyword — not just variable swaps. Each page includes:
 
-- Platform-specific pain points
+- Keyword-specific pain points and benefits
 - Tailored solutions and features
 - Custom FAQ answers
 - Natural keyword usage for SEO

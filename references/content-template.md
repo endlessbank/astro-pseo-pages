@@ -79,38 +79,33 @@ Each content page is a markdown file with frontmatter + content:
 
 ```markdown
 ---
-title: "Bulk Invoices Creation from Stripe CSV"
-description: "Convert your Stripe CSV exports into professional invoices automatically."
-keyword: "Stripe"
-keywordSlug: "stripe-csv-to-invoice"
+title: "Best CRM for Healthcare"
+description: "Discover why healthcare professionals choose our CRM for patient management and compliance."
+keyword: "Healthcare"
+keywordSlug: "healthcare"
 order: 1
 ---
 
-## The Problem with Manual Invoice Creation
+## The Challenge for Healthcare Teams
 
-[Unique content about Stripe-specific pain points...]
+[Unique content about healthcare-specific pain points...]
 
-## How {{SAAS_NAME}} Solves This
+## How {{SAAS_NAME}} Helps Healthcare Teams
 
-[Unique content about the solution for Stripe users...]
+[Unique content about the solution for healthcare users...]
 
-## Step-by-Step Process
+## Key Features for Healthcare
 
-1. **Export your Stripe CSV** — Download your transactions...
-2. **Upload to {{SAAS_NAME}}** — Drag and drop...
-3. **Download your invoices** — Get professional PDFs...
-
-## Key Features for Stripe Users
-
-- Automatic field mapping for Stripe CSV format
-- [More Stripe-specific features...]
+- HIPAA-compliant data storage
+- Patient record management
+- [More healthcare-specific features...]
 
 ## Frequently Asked Questions
 
-### What Stripe CSV formats are supported?
+### Is your CRM HIPAA compliant?
 [Unique answer...]
 
-### Can I customize the invoice template?
+### Can I import existing patient records?
 [Unique answer...]
 ```
 

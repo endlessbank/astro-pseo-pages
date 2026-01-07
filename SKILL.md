@@ -15,41 +15,43 @@ Trigger: "Create pSEO templates" or "Set up pSEO pages"
 
 **Question Flow** (ask one at a time):
 
-1. **Topic Pattern**: "What's the pSEO topic pattern? Use [placeholder] for the variable part.
+1. **Topic Pattern**: "What's the pSEO topic pattern? Use `[variable]` for the keyword. The SaaS name comes from site.config.
    Examples:
-   - 'Bulk Invoices Creation from [platform] CSV'
-   - 'Best CRM for [industry]'
-   - '[service] in [city]'
-   - 'How to Use [tool] for [use-case]'
-   - '[framework] vs [competitor] Comparison'
-   - 'Free [tool-type] for [audience]'"
+   - '[SaaS_NAME] Integration with [platform]'
+   - '[SaaS_NAME] for [audience]'
+   - '[SaaS_NAME] vs [competitor]'
+   - '[SaaS_NAME] Alternative to [competitor]'
+   - 'Free [tool-type] Generator'
+   - '[industry] Solution with [SaaS_NAME]'
+   - '[template-type] Templates'"
 
 2. **URL Structure**: "What's the URL structure?
    Examples:
-   - `/platform/[keyword-slug]` → `/platform/stripe-csv-to-invoice`
-   - `/industries/[keyword-slug]` → `/industries/real-estate-crm`
-   - `/locations/[keyword-slug]` → `/locations/new-york`
-   - `/tools/[keyword-slug]` → `/tools/free-invoice-generator`
-   - `/compare/[keyword-slug]` → `/compare/react-vs-vue`
-   - `/use-cases/[keyword-slug]` → `/use-cases/freelancers`"
+   - `/integrations/[slug]` → `/integrations/slack`, `/integrations/zapier`
+   - `/solutions/[slug]` → `/solutions/freelancers`, `/solutions/startups`
+   - `/vs/[slug]` → `/vs/competitor-name`
+   - `/alternatives/[slug]` → `/alternatives/competitor-name`
+   - `/tools/[slug]` → `/tools/invoice-generator`
+   - `/templates/[slug]` → `/templates/proposal`, `/templates/contract`
+   - `/industries/[slug]` → `/industries/healthcare`, `/industries/real-estate`"
 
 3. **Content Sections**: "What sections should each content page have? Describe each section's purpose and content.
    Example:
-   - **Hero**: Headline with [platform] name, subheadline explaining the benefit
-   - **Problem**: Describe the pain point of manual invoice creation
-   - **Solution**: How our tool solves it for [platform] users
-   - **Steps**: 3-step process (Upload CSV, Map fields, Download invoices)
-   - **Features**: Key features relevant to [platform]
-   - **FAQ**: 3-4 questions specific to [platform]
+   - **Hero**: Headline with [variable] name, subheadline explaining the benefit
+   - **Problem**: Describe the pain point this page addresses
+   - **Solution**: How [SaaS_NAME] solves it for this [variable]
+   - **Features**: Key features relevant to [variable]
+   - **How It Works**: Step-by-step process
+   - **FAQ**: 3-4 questions specific to [variable]
    - **CTA**: Final call to action"
 
 4. **Index Page Content**: "What's the index page headline and intro text?
    Examples:
-   - Headline: 'Create Invoices from Any Platform' / Intro: 'Convert your CSV exports into professional invoices in seconds.'
-   - Headline: 'The Best CRM for Every Industry' / Intro: 'Find the perfect CRM solution tailored to your industry needs.'
-   - Headline: 'We Service All Major Cities' / Intro: 'Professional services available in your area. Find your city below.'
-   - Headline: 'Free Tools for Everyone' / Intro: 'No signup required. Start using our free tools today.'
-   - Headline: 'Framework Comparisons' / Intro: 'Detailed side-by-side comparisons to help you choose the right tech.'"
+   - Headline: 'Integrations' / Intro: 'Connect [SaaS_NAME] with your favorite tools.'
+   - Headline: 'Solutions for Every Industry' / Intro: 'See how [SaaS_NAME] works for your business.'
+   - Headline: 'Compare [SaaS_NAME]' / Intro: 'See how we stack up against alternatives.'
+   - Headline: 'Free Tools' / Intro: 'No signup required. Start using now.'
+   - Headline: 'Templates' / Intro: 'Ready-to-use templates to get started fast.'"
 
 **Output**:
 - `src/content/config.ts` — Updated with pSEO collection
@@ -79,11 +81,11 @@ Trigger: "Generate pSEO pages" or user pastes keyword list after template approv
 
 **Input**: Keyword list (comma-separated or one per line)
 ```
+Slack
+Notion
+Zapier
 Stripe
-PayPal
-Wise
-Mercury
-QuickBooks
+HubSpot
 ```
 
 **Process**:
@@ -91,28 +93,34 @@ QuickBooks
 1. **Parse Keywords** — Extract from user input
 
 2. **Derive Variables** — For each keyword, create:
-   - `keyword`: Original (e.g., "Stripe")
-   - `keyword_slug`: URL-safe (e.g., "stripe")
-   - `full_slug`: Complete slug from pattern (e.g., "stripe-csv-to-invoice")
-   - `full_title`: From topic pattern (e.g., "Bulk Invoices Creation from Stripe CSV")
+   - `keyword`: Original (e.g., "Slack")
+   - `keyword_slug`: URL-safe (e.g., "slack")
+   - `full_title`: From topic pattern (e.g., "Acme Integration with Slack")
 
 3. **Generate Content** — For each keyword:
    - Create unique content based on template sections
    - Content should be specific to that keyword/platform
    - Save as `src/content/pseo/[full_slug].md`
 
-4. **Verify Index** — Index page auto-pulls from content collection
+4. **Update Footer** — Add link to pSEO index page in site footer:
+   - Open `src/config/site.config.ts`
+   - Add new link to `footer.links.product` array (e.g., `{ label: "{{INDEX_LABEL}}", href: "/{{INDEX_SLUG}}" }`)
+
+5. **Verify Index** — Index page auto-pulls from content collection
 
 **Output**:
 ```
 ✅ Generated 5 pSEO pages!
 
 Created:
-- src/content/pseo/stripe-csv-to-invoice.md
-- src/content/pseo/paypal-csv-to-invoice.md
-- src/content/pseo/wise-csv-to-invoice.md
-- src/content/pseo/mercury-csv-to-invoice.md
-- src/content/pseo/quickbooks-csv-to-invoice.md
+- src/content/pseo/[slug-1].md
+- src/content/pseo/[slug-2].md
+- src/content/pseo/[slug-3].md
+- src/content/pseo/[slug-4].md
+- src/content/pseo/[slug-5].md
+
+Updated:
+- src/config/site.config.ts (added footer link)
 
 Preview at http://localhost:4321/[index]
 ```
